@@ -10,6 +10,11 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
+
+camera.position.z = 10;
+camera.position.y = 5;
+camera.position.x = 5;
+
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.outputEncoding = THREE.sRGBEncoding;
@@ -20,7 +25,7 @@ controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
 const rgbeLoader = new RGBELoader();
-rgbeLoader.load("./assets/qwantani_dusk_2_4k.hdr", (texture) => {
+rgbeLoader.load("/assets/qwantani_dusk_2_4k.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;
   scene.background = texture;
   scene.environment = texture;
@@ -94,8 +99,6 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
-
-camera.position.z = 5;
 
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
